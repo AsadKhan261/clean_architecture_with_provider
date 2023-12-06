@@ -1,5 +1,6 @@
 import 'package:clean_architecture_with_provider/core/utils/extension/extensions.dart';
 import 'package:clean_architecture_with_provider/features/authantication/presentation/pages/login_view.dart';
+import 'package:clean_architecture_with_provider/features/user_list/presentation/pages/user_list.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../utils/enums/page_state_enum.dart';
@@ -96,6 +97,10 @@ class AppRouterDelegate extends RouterDelegate<PageConfiguration>
       switch (pageConfig.uiPage) {
         case Pages.loginPage:
           _addPageData(const LoginView(), pageConfig);
+          // _addPageData(const DashboardPage(), pageConfig);
+          break;
+        case Pages.userListPage:
+          _addPageData( UserListView(), pageConfig);
           // _addPageData(const DashboardPage(), pageConfig);
           break;
           default :

@@ -29,6 +29,8 @@ class RouterParser extends RouteInformationParser<PageConfiguration> {
     switch (configuration.uiPage) {
       case Pages.loginPage:
         return const RouteInformation(location: PagePaths.loginPagePath);
+      case Pages.userListPage:
+        return const RouteInformation(location: PagePaths.userListPagePath);
     }
   }
 }

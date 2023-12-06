@@ -8,4 +8,8 @@ class PageConfigs {
       key: PageKeys.loginPageKey,
       path: PagePaths.loginPagePath,
       uiPage: Pages.loginPage);
+  static PageConfiguration userListPageConfig = const PageConfiguration(
+      key: PageKeys.userListPageKey,
+      path: PagePaths.userListPagePath,
+      uiPage: Pages.userListPage);
 }

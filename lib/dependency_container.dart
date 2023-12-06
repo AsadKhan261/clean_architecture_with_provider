@@ -9,16 +9,24 @@ import 'package:clean_architecture_with_provider/features/authantication/data/re
 import 'package:clean_architecture_with_provider/features/authantication/domain/repositories/auth_repo.dart';
 import 'package:clean_architecture_with_provider/features/authantication/domain/use_cases/login_usecase.dart';
 import 'package:clean_architecture_with_provider/features/authantication/presentation/manager/auth_provider.dart';
+import 'package:clean_architecture_with_provider/features/user_list/data/data_sources/user_list_remote_data_source.dart';
+import 'package:clean_architecture_with_provider/features/user_list/data/repositories/user_list_repository.dart';
+import 'package:clean_architecture_with_provider/features/user_list/domain/repositories/user_list_repository.dart';
+import 'package:clean_architecture_with_provider/features/user_list/domain/use_cases/user_list_use_case.dart';
+import 'package:clean_architecture_with_provider/features/user_list/presentation/manager/user_list_provider.dart';
 import 'package:dio/dio.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 Future<void> onInit() async {
   ///UseCases
   sl.registerLazySingleton(() => LoginUseCase(sl()));
+  sl.registerLazySingleton(() => UserListUseCase(sl()));
 
   ///Repositories
   sl.registerLazySingleton<AuthRemoteDataSource>(
       () => AuthRemoteDataSourceImp(sl()));
+  sl.registerLazySingleton<UserListRemoteDataSource>(
+      () => UserListRemoteDataSourceImp(sl()));
 
   /// External
   sl.registerLazySingleton<InternetConnectionChecker>(
@@ -30,12 +38,15 @@ Future<void> onInit() async {
   ///Data sources
   sl.registerLazySingleton<AuthRepository>(
       () => LoginRepoImp(networkInfo: sl(), remoteDataSource: sl()));
+  sl.registerLazySingleton<UserListRepository>(
+          () => UserListImplementation(networkInfo: sl(), remoteDataSource: sl()));
 
   ///! Providers
   sl.registerLazySingleton(() => AuthProvider(sl()));
   sl.registerLazySingleton(() => UserProvider());
   sl.registerLazySingleton(() => SecureStorageService());
   sl.registerLazySingleton(() => AuthServices());
+  sl.registerLazySingleton(() => UserListProvider(sl()));
 
   /// Navigator
   sl.registerLazySingleton(() => AppState());

@@ -26,5 +26,6 @@ class PageConfiguration extends Equatable {
 
 enum Pages {
   loginPage,
+  userListPage
 
 }
